@@ -19,14 +19,14 @@
 </template>
 
 <script>
-import OneKey from './OneKey';
+import OneKey from './OneKey'
 
 export default {
   name: 'FirstRecord',
   components: {
-    OneKey,
-  },
-};
+    OneKey
+  }
+}
 </script>
 
 <style>

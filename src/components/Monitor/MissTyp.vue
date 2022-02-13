@@ -7,6 +7,6 @@
 
 <script>
 export default {
-  props: ['missTypCount'],
-};
+  props: ['missTypCount']
+}
 </script>

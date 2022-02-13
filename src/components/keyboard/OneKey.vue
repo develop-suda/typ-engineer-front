@@ -7,22 +7,22 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState } from 'vuex'
 
 export default {
   name: 'OneKey',
   props: {
     alphabet: {
-      required: true,
-    },
+      required: true
+    }
   },
   computed: {
     ...mapState(['inputKey']),
     isPress() {
-      return this.inputKey == this.alphabet;
-    },
-  },
-};
+      return this.inputKey == this.alphabet
+    }
+  }
+}
 </script>
 
 <style scoped>

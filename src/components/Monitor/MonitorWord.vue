@@ -9,8 +9,8 @@
 
 <script>
 export default {
-  props: ['typedWord', 'typingWord'],
-};
+  props: ['typedWord', 'typingWord']
+}
 </script>
 
 <style scoped>
