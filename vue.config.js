@@ -1,8 +1,12 @@
 module.exports = {
   devServer: {
-    watchOptions: {
-      poll: true,
-    },
-    disableHostCheck: true, // ←多分これのおかげ
-  },
-};
+    proxy: {
+      'http://localhost:8080': {
+        target: 'http://localhost:8888',
+        timeout: 6000,
+        secure: false,
+        changeOrigin: true
+      }
+    }
+  }
+}

@@ -1,7 +1,8 @@
 <template>
   <div>
-    <h1>{{ typWords[typWordCount] }}</h1>
     <MonitorWord :typedWord="enteredWord" :typingWord="enterWord" />
+    <h4>{{ typWords[typWordCount].parts_of_speech }}</h4>
+    <h4>{{ typWords[typWordCount].Discription }}</h4>
     <MissTyp :missTypCount="missTypCount" />
   </div>
 </template>
@@ -22,7 +23,7 @@ export default {
   },
   data() {
     return {
-      typWords: ['application', 'engineer', 'computer'],
+      typWords: [],
       typCount: 0,
       typWordCount: 0,
       typWordSplit: '',
@@ -50,12 +51,12 @@ export default {
           this.typCount = 0
           this.typWordCount++
 
-          //↓で無限ループ
+          //すべての単語を入力し切った場合の処理
           if (this.typWordCount == this.typWords.length) {
             this.typWordCount = 0
           }
 
-          this.typWordSplit = this.typWords[this.typWordCount].split('')
+          this.typWordSplit = this.typWords[this.typWordCount].word.split('')
           this.enteredWord = ''
           this.enterWord = this.typWordSplit.join('')
         }
@@ -74,9 +75,18 @@ export default {
     ...mapState(['inputKey'])
   },
   created: function () {
-    this.typWordSplit = this.typWords[0].split('')
-    this.enterWord = this.typWordSplit.join('')
-    window.addEventListener('keypress', this.inputKeyCheck)
+    this.axios
+      .get('http://localhost:8888/api?parts_of_speech=形容詞&is_deleted=0&limit=10')
+      .then((response) => {
+        this.typWords = response.data
+        this.typWordSplit = this.typWords[0].word.split('')
+        this.enterWord = this.typWordSplit.join('')
+        window.addEventListener('keypress', this.inputKeyCheck)
+      })
+      .catch((e) => {
+        console.log(e)
+        alert(e)
+      })
   }
 }
 </script>

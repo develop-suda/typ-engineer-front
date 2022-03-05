@@ -1,9 +1,9 @@
 <template>
   <div>
-    <p>
+    <h1>
       <span :class="{ pressed: true }">{{ typedWord }}</span
       >{{ typingWord }}
-    </p>
+    </h1>
   </div>
 </template>
 
