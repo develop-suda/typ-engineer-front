@@ -1,8 +1,14 @@
 <template>
   <div>
-    <MonitorWord :typedWord="enteredWord" :typingWord="enterWord" />
-    <h4>{{ typWords[typWordCount].parts_of_speech }}</h4>
-    <h4>{{ typWords[typWordCount].Discription }}</h4>
+    <div v-if="isActive">
+      <MonitorWord :typedWord="enteredWord" :typingWord="enterWord" />
+      <h4>{{ typWords[typWordCount].parts_of_speech }}</h4>
+      <h4>{{ typWords[typWordCount].Description }}</h4>
+    </div>
+    <div v-else>
+      <h1>クリア!!</h1>
+      <button @click="replay">もう一度</button>
+    </div>
     <MissTyp :missTypCount="missTypCount" />
   </div>
 </template>
@@ -30,15 +36,18 @@ export default {
       enteredWord: '',
       enterWord: '',
       tempWord: '',
-      missTypCount: 0
+      missTypCount: 0,
+      isActive: true
     }
   },
   methods: {
     inputKeyCheck() {
       if (this.inputKey == this.typWordSplit[this.typCount]) {
+        //入力が正しい場合
         this.typCount++
 
         if (this.typCount !== this.typWordSplit.length) {
+          //まだ入力し切っていない場合の処理
           //入力された文字をenteredWordに代入
           this.tempWord = this.typWordSplit.slice(0, this.typCount)
           this.enteredWord = this.tempWord.join('')
@@ -53,7 +62,7 @@ export default {
 
           //すべての単語を入力し切った場合の処理
           if (this.typWordCount == this.typWords.length) {
-            this.typWordCount = 0
+            this.isActive = !this.isActive
           }
 
           this.typWordSplit = this.typWords[this.typWordCount].word.split('')
@@ -69,6 +78,15 @@ export default {
         //ミスタイプした回数を記録
         this.missTypCount++
       }
+    },
+    replay() {
+      this.typWordCount = 0
+      this.enteredWord = ''
+      this.tempWord = ''
+      this.missTypCount = 0
+      this.isActive = true
+      this.typWordSplit = this.typWords[0].word.split('')
+      this.enterWord = this.typWordSplit.join('')
     }
   },
   computed: {
@@ -76,7 +94,7 @@ export default {
   },
   created: function () {
     this.axios
-      .get('http://localhost:8888/api?parts_of_speech=形容詞&is_deleted=0&limit=10')
+      .get('http://localhost:8888/api?parts_of_speech=動詞&is_deleted=0&limit=10')
       .then((response) => {
         this.typWords = response.data
         this.typWordSplit = this.typWords[0].word.split('')
