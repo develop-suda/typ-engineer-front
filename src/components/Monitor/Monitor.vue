@@ -27,6 +27,7 @@ export default {
     MissTyp
     // StopWatch
   },
+  props: ['type', 'partsOfSpeech', 'quantity', 'alphabet'],
   data() {
     return {
       typWords: [],
@@ -93,8 +94,13 @@ export default {
     ...mapState(['inputKey'])
   },
   created: function () {
+    var params = new URLSearchParams()
+    params.append('type', this.type)
+    params.append('parts_of_speech', this.partsOfSpeech)
+    params.append('quantity', this.quantity)
+    params.append('alphabet', this.alphabet)
     this.axios
-      .get('http://localhost:8888/api?parts_of_speech=動詞&is_deleted=0&limit=10')
+      .post('http://localhost:8888/api/typWord', params)
       .then((response) => {
         this.typWords = response.data
         this.typWordSplit = this.typWords[0].word.split('')

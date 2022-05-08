@@ -1,6 +1,6 @@
 <template>
   <div id="Main">
-    <Monitor />
+    <Monitor :type="type" :partsOfSpeech="partsOfSpeech" :quantity="quantity" :alphabet="alphabet" />
     <KeyBoard />
     <router-link to="/">Homeへ</router-link>
   </div>
@@ -16,6 +16,7 @@ export default {
     Monitor,
     KeyBoard
   },
+  props: ['type', 'partsOfSpeech', 'quantity', 'alphabet'],
   methods: {
     inputKey(event) {
       this.$store.commit('updateInputKey', event.key)
