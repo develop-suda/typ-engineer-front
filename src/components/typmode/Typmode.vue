@@ -37,7 +37,7 @@ export default {
       type: '',
       partsOfSpeech: '',
       quantity: 10,
-      alphabet: '',
+      alphabet: 'a',
       wordTypes: [],
       partsOfSpeeches: [],
       words: []
@@ -58,6 +58,7 @@ export default {
       .get('http://localhost:8888/api/types')
       .then((response) => {
         this.wordTypes = response.data
+        this.type = this.wordTypes[0].word_type
       })
       .catch((e) => {
         console.log(e)
@@ -67,6 +68,7 @@ export default {
       .get('http://localhost:8888/api/partsofspeech')
       .then((response) => {
         this.partsOfSpeeches = response.data
+        this.partsOfSpeech = this.partsOfSpeeches[0].parts_of_speech
       })
       .catch((e) => {
         console.log(e)

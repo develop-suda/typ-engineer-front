@@ -1,5 +1,4 @@
-//ファイル名はパスカルケースでお願いします
-//パルカルケースは最初も大文字
+//ファイル名はパスカルケースでお願いします //パルカルケースは最初も大文字
 <template>
   <div class="keyFlame" :class="{ pressing: isPress }">
     <p>{{ this.alphabet }}</p>

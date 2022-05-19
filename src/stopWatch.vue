@@ -17,27 +17,27 @@ export default {
       start: 0, // startを押した時刻
       timer: 0, // setInterval()の格納用
       interval: 0, // 計測時間
-      accum: 0, // 累積時間(stopしたとき用)
-    };
+      accum: 0 // 累積時間(stopしたとき用)
+    }
   },
   methods: {
     startTimer() {
-      this.active = true;
-      this.start = Date.now();
+      this.active = true
+      this.start = Date.now()
       this.timer = setInterval(() => {
-        this.interval = this.accum + (Date.now() - this.start) * 0.001;
-      }, 10); // 10msごとに現在時刻とstartを押した時刻の差を足す
+        this.interval = this.accum + (Date.now() - this.start) * 0.001
+      }, 10) // 10msごとに現在時刻とstartを押した時刻の差を足す
     },
     stopTimer() {
-      this.active = false;
-      this.accum = this.interval;
-      clearInterval(this.timer);
+      this.active = false
+      this.accum = this.interval
+      clearInterval(this.timer)
     },
     resetTimer() {
-      this.interval = 0;
-      this.accum = 0;
-      this.start = Date.now();
-    },
-  },
-};
+      this.interval = 0
+      this.accum = 0
+      this.start = Date.now()
+    }
+  }
+}
 </script>
