@@ -34,6 +34,7 @@ export default {
       typCount: 0,
       typWordCount: 0,
       typWordSplit: '',
+      typWordSplitLowerCase: '',
       enteredWord: '',
       enterWord: '',
       tempWord: '',
@@ -43,11 +44,11 @@ export default {
   },
   methods: {
     inputKeyCheck() {
-      if (this.inputKey == this.typWordSplit[this.typCount]) {
+      if (this.inputKey == this.typWordSplitLowerCase[this.typCount]) {
         //入力が正しい場合
         this.typCount++
 
-        if (this.typCount !== this.typWordSplit.length) {
+        if (this.typCount !== this.typWordSplitLowerCase.length) {
           //まだ入力し切っていない場合の処理
           //入力された文字をenteredWordに代入
           this.tempWord = this.typWordSplit.slice(0, this.typCount)
@@ -67,6 +68,7 @@ export default {
           }
 
           this.typWordSplit = this.typWords[this.typWordCount].word.split('')
+          this.typWordSplitLowerCase = this.typWords[this.typWordCount].word.toLowerCase().split('')
           this.enteredWord = ''
           this.enterWord = this.typWordSplit.join('')
         }
@@ -87,6 +89,7 @@ export default {
       this.missTypCount = 0
       this.isActive = true
       this.typWordSplit = this.typWords[0].word.split('')
+      this.typWordSplitLowerCase = this.typWords[0].word.toLowerCase().split('')
       this.enterWord = this.typWordSplit.join('')
     }
   },
@@ -104,6 +107,7 @@ export default {
       .then((response) => {
         this.typWords = response.data
         this.typWordSplit = this.typWords[0].word.split('')
+        this.typWordSplitLowerCase = this.typWords[0].word.toLowerCase().split('')
         this.enterWord = this.typWordSplit.join('')
         window.addEventListener('keypress', this.inputKeyCheck)
       })
