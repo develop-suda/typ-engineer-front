@@ -17,7 +17,7 @@ var _Axios = _interopRequireDefault(require('../components/Axios'))
 
 var _Typmode = _interopRequireDefault(require('../components/typmode/Typmode'))
 
-var _regist = _interopRequireDefault(require('../components/regist/regist'))
+var _regist = _interopRequireDefault(require('../components/Register/Register'))
 
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj }
@@ -52,8 +52,8 @@ var routes = [
     component: _Typmode['default']
   },
   {
-    path: '/regist',
-    name: 'Regist',
+    path: '/Register',
+    name: 'Register',
     component: _regist['default']
   }
 ]

@@ -4,7 +4,7 @@ import Home from '../components/Home.vue'
 import Typ from '../components/Main'
 import Axios from '../components/Axios'
 import Typmode from '../components/typmode/Typmode'
-import Regist from '../components/regist/regist'
+import Register from '../components/register/register'
 
 Vue.use(VueRouter)
 
@@ -35,9 +35,9 @@ const routes = [
     component: Typmode
   },
   {
-    path: '/regist',
-    name: 'Regist',
-    component: Regist
+    path: '/register',
+    name: 'Register',
+    component: Register
   }
 ]
 
