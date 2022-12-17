@@ -7,12 +7,26 @@ export default new Vuex.Store({
   state: function () {
     return {
       inputKey: '',
-      count: 0
+      tokenString: '',
+      userId: '',
+      alphabetArr: 'abcdefghijklmnopqrstuvwxyz'.split(''),
     }
   },
   mutations: {
     updateInputKey(state, inputKey) {
       state.inputKey = inputKey
+    },
+
+    settingLoginData(state, loginData) {
+
+      state.userId = loginData.user_id
+      state.tokenString = loginData.tokenString
+
+    },
+
+    deleteLoginData(state) {
+      state.userId = ''
+      state.tokenString = ''
     }
   }
 })

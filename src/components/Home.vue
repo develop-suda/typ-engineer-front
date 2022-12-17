@@ -1,11 +1,36 @@
 <template>
   <div class="hello">
-    <router-link to="./typ">typへ</router-link>
-    <hr />
-    <router-link to="./axios">axiosへ</router-link>
-    <hr />
-    <router-link to="./register">ユーザ登録</router-link>
-    <hr />
-    <router-link to="./typmode">モード選択へ</router-link>
+    <div v-if="!isUserId">
+      <router-link to="./register">ユーザ登録</router-link>
+      <hr />
+    </div>
+    <div v-if="!isUserId">
+      <router-link to="./login">ログイン</router-link>
+      <hr />
+    </div>
+    <div>
+      <router-link to="./typmode">タイピングへ!</router-link>
+      <hr />
+    </div>
+    <div v-if="isUserId">
+      <router-link to="./logout">ログアウト</router-link>
+      <hr />
+    </div>
   </div>
 </template>
+
+<script>
+import { mapState } from 'vuex'
+
+export default {
+  name: 'Home',
+  computed: {
+    ...mapState(['userId']),
+    isUserId() {
+      return this.userId != ''
+    }
+  },
+  
+  
+}
+</script>

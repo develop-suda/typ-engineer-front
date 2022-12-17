@@ -9,9 +9,14 @@
       <input type="email" name="email" v-model="email" required />
       <p>パスワード</p>
       <input type="password" name="password" v-model="password" required />
+      <p>パスワードをもう一度</p>
+      <input type="password" name="password_confirmation" v-model="passwordConfirmation" required />
+      <p v-if="IsMatchPassword && !password"></p>
+      <p v-else-if="IsMatchPassword && password">パスワードが一致します</p>
+      <p v-else>パスワードが一致しておりません</p>
     </div>
     <hr />
-    <button @click="userRegist">登録</button>
+    <button @click="userRegister" :disabled="!IsMatchPassword">登録</button>
     <hr />
     {{ info }}
     {{ hashPassword }}
@@ -28,16 +33,20 @@ export default {
       lastName: '',
       email: '',
       password: '',
+      passwordConfirmation: '',
       info: ''
     }
   },
   computed: {
     hashPassword: function () {
       return createHash('sha256').update(this.password).digest('hex')
+    },
+    IsMatchPassword: function () {
+      return this.password === this.passwordConfirmation
     }
   },
   methods: {
-    userRegist() {
+    userRegister() {
       var params = new URLSearchParams()
       params.append('last_name', this.lastName)
       params.append('first_name', this.firstName)
@@ -45,11 +54,14 @@ export default {
       params.append('password', createHash('sha256').update(this.password).digest('hex'))
       this.axios
         .post('http://localhost:8888/api/userRegister', params)
-        .then((response) => (this.info = response.data))
+        .then((response) => (this.setLoginData(response.data)))
         .catch((e) => {
           console.log(e)
           alert(e)
         })
+    },
+    setLoginData(loginData) {
+      this.$store.commit('settingLoginData',loginData)
     }
   }
 }
