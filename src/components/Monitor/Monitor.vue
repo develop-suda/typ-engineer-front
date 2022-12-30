@@ -68,7 +68,7 @@ export default {
           //すべての単語を入力し切った場合の処理
           if (this.typWordCount == this.typWords.length) {
             this.isActive = !this.isActive;
-            this.postTypWordInfo();
+            this.postTypInfo();
           }
 
           this.typWordSplit = this.typWords[this.typWordCount].word.split('');
@@ -115,7 +115,7 @@ export default {
       });
       return typeInfoArr;
     },
-    postTypWordInfo() {
+    postTypInfo() {
       var params = new URLSearchParams();
 
       this.postTypAlphaInfo = this.convertAlphaInfoObjToArray();
@@ -126,7 +126,7 @@ export default {
       params.append('typAlphaInfo', JSON.stringify(this.postTypAlphaInfo));
 
       this.axios
-        .post('http://localhost:8888/api/postTypeWordInfo', params)
+        .post('http://localhost:8888/api/postTypeInfo', params)
         .then((response) => {
           console.log(response.data);
         })

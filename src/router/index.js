@@ -6,6 +6,7 @@ import Typmode from '../components/typmode/Typmode';
 import Register from '../components/register/register';
 import Login from '../components/login/Login.vue';
 import logout from '../components/logout/Logout.vue';
+import WordList from '../components/wordlist/WordList.vue';
 
 Vue.use(VueRouter);
 
@@ -44,6 +45,11 @@ const routes = [
     path: '/logout',
     name: 'logout',
     component: logout,
+  },
+  {
+    path: '/wordlist',
+    name: 'WordList',
+    component: WordList,
   },
 ];
 
