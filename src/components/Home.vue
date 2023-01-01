@@ -20,7 +20,10 @@
       <router-link to="./logout">ログアウト</router-link>
       <hr />
     </div>
-    <div v-if="isUserId"></div>
+    <div v-if="isUserId">
+      <router-link to="./mypage">マイページ</router-link>
+      <hr />
+    </div>
   </div>
 </template>
 

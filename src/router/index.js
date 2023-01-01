@@ -7,6 +7,7 @@ import Register from '../components/register/register';
 import Login from '../components/login/Login.vue';
 import logout from '../components/logout/Logout.vue';
 import WordList from '../components/wordlist/WordList.vue';
+import MyPage from '../components/mypage/MyPage.vue';
 
 Vue.use(VueRouter);
 
@@ -50,6 +51,11 @@ const routes = [
     path: '/wordlist',
     name: 'WordList',
     component: WordList,
+  },
+  {
+    path: '/mypage',
+    name: 'MyPage',
+    component: MyPage,
   },
 ];
 
