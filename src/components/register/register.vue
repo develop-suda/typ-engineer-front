@@ -10,7 +10,12 @@
       <p>パスワード</p>
       <input type="password" name="password" v-model="password" required />
       <p>パスワードをもう一度</p>
-      <input type="password" name="password_confirmation" v-model="passwordConfirmation" required />
+      <input
+        type="password"
+        name="password_confirmation"
+        v-model="passwordConfirmation"
+        required
+      />
       <p v-if="IsMatchPassword && !password"></p>
       <p v-else-if="IsMatchPassword && password">パスワードが一致します</p>
       <p v-else>パスワードが一致しておりません</p>
@@ -24,7 +29,7 @@
 </template>
 
 <script>
-import { createHash } from 'crypto'
+import { createHash } from 'crypto';
 
 export default {
   data: function () {
@@ -34,35 +39,40 @@ export default {
       email: '',
       password: '',
       passwordConfirmation: '',
-      info: ''
-    }
+      info: '',
+    };
   },
   computed: {
     hashPassword: function () {
-      return createHash('sha256').update(this.password).digest('hex')
+      return createHash('sha256').update(this.password).digest('hex');
     },
     IsMatchPassword: function () {
-      return this.password === this.passwordConfirmation
-    }
+      return this.password === this.passwordConfirmation;
+    },
   },
   methods: {
     userRegister() {
-      var params = new URLSearchParams()
-      params.append('last_name', this.lastName)
-      params.append('first_name', this.firstName)
-      params.append('email', this.email)
-      params.append('password', createHash('sha256').update(this.password).digest('hex'))
+      var params = new URLSearchParams();
+      params.append('last_name', this.lastName);
+      params.append('first_name', this.firstName);
+      params.append('email', this.email);
+      params.append(
+        'password',
+        createHash('sha256').update(this.password).digest('hex')
+      );
       this.axios
         .post('http://localhost:8888/api/userRegister', params)
-        .then((response) => (this.setLoginData(response.data)))
-        .catch((e) => {
-          console.log(e)
-          alert(e)
+        .then((response) => {
+          this.setLoginData(response.data);
+          this.$router.push('/Home');
         })
+        .catch((e) => {
+          alert(e);
+        });
     },
     setLoginData(loginData) {
-      this.$store.commit('settingLoginData',loginData)
-    }
-  }
-}
+      this.$store.commit('settingLoginData', loginData);
+    },
+  },
+};
 </script>

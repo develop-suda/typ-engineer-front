@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div>
     <div v-if="!isUserId">
       <router-link to="./register">ユーザ登録</router-link>
       <hr />

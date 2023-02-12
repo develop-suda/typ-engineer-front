@@ -128,10 +128,9 @@ export default {
       this.axios
         .post('http://localhost:8888/api/postTypeInfo', params)
         .then((response) => {
-          console.log(response.data);
+          response.data;
         })
         .catch((e) => {
-          console.log(e);
           alert(e);
         });
     },
@@ -192,7 +191,6 @@ export default {
         window.addEventListener('keypress', this.inputKeyCheck);
       })
       .catch((e) => {
-        console.log(e);
         alert(e);
       });
   },

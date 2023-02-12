@@ -51,12 +51,11 @@ export default {
       var params = new URLSearchParams();
       params.append('userId', this.userId);
       this.axios
-        .post('http://localhost:8888/api/typWordInfo', params)
+        .post('http://localhost:8888/api/typCountInAllWord', params)
         .then((response) => {
           this.typWordInfos = response.data;
         })
         .catch((e) => {
-          console.log(e);
           alert(e);
         });
     },
@@ -68,7 +67,6 @@ export default {
         this.wordDetails = response.data;
       })
       .catch((e) => {
-        console.log(e);
         alert(e);
       });
 

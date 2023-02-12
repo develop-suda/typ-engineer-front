@@ -35,15 +35,17 @@ export default {
       );
       this.axios
         .post('http://localhost:8888/api/userLogin', params)
-        .then((response) => (this.setLoginData(response.data)))
+        .then((response) => {
+          this.setLoginData(response.data);
+          this.$router.push('/Home');
+        })
         .catch((e) => {
-          console.log(e);
           alert(e);
         });
     },
     setLoginData(loginData) {
-      this.$store.commit('settingLoginData',loginData)
-    }
+      this.$store.commit('settingLoginData', loginData);
+    },
   },
 };
 </script>

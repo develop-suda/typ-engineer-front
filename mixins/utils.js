@@ -4,12 +4,11 @@ export default {
       this.axios
         .get('http://localhost:8888/levels')
         .then((response) => {
-          return response.data
+          return response.data;
         })
         .catch((e) => {
-          console.log(e)
-          return alert(e)
-        })
-    }
-  }
-}
+          return alert(e);
+        });
+    },
+  },
+};
