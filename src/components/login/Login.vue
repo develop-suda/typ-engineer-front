@@ -1,16 +1,16 @@
 <template>
   <div>
-    <p>メールアドレス</p>
-    <input type="email" name="email" v-model="email" required />
-    <p>パスワード</p>
-    <input type="password" name="password" v-model="password" required />
-    <button @click="userLogin">ログイン</button>
-    {{ hashPassword }}
-    {{ info }}
+    <h3>Sign up TYP-ENGINEER</h3>
+    <b-form-input type="email" v-model="email" placeholder="メールアドレス" required></b-form-input>
+    <b-form-input type="password" v-model="password" placeholder="パスワード" required></b-form-input>
+    <hr />
+    <b-button variant="success" @click="userLogin">Sing up</b-button>
   </div>
 </template>
 
 <script>
+// @ts-nocheck
+
 import { createHash } from 'crypto';
 
 export default {

@@ -1,11 +1,12 @@
 <template>
   <div>
-    <p>ミスタイプ数</p>
-    <p>{{ missTypCount }}</p>
+    <h6>ミスタイプ数 : {{ missTypCount }}</h6>
   </div>
 </template>
 
 <script>
+// @ts-nocheck
+
 export default {
   props: ['missTypCount']
 }

@@ -1,13 +1,14 @@
 <template>
   <div>
     <h1>
-      <span :class="{ pressed: true }">{{ typedWord }}</span
-      >{{ typingWord }}
+      <span :class="{ pressed: true }">{{ typedWord }}</span>{{ typingWord }}
     </h1>
   </div>
 </template>
 
 <script>
+// @ts-nocheck
+
 export default {
   props: ['typedWord', 'typingWord']
 }

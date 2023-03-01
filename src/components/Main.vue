@@ -1,16 +1,14 @@
 <template>
   <div id="Main">
-    <Monitor
-      :type="type"
-      :partsOfSpeech="partsOfSpeech"
-      :quantity="quantity"
-      :alphabet="alphabet"
-    />
+    <Monitor :type="type" :partsOfSpeech="partsOfSpeech" :quantity="quantity" :alphabet="alphabet" />
+    <div></div>
     <KeyBoard />
   </div>
 </template>
 
 <script>
+// @ts-nocheck
+
 import Monitor from './Monitor/Monitor.vue';
 import KeyBoard from './keyboard/KeyBoard.vue';
 
@@ -36,7 +34,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #Main {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

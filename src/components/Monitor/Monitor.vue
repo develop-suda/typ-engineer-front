@@ -1,19 +1,25 @@
+
 <template>
   <div>
     <div v-if="isActive">
       <MonitorWord :typedWord="enteredWord" :typingWord="enterWord" />
-      <h4>{{ typWords[typWordCount].parts_of_speech }}</h4>
-      <h4>{{ typWords[typWordCount].Description }}</h4>
+      <h6>{{ typWords[typWordCount].parts_of_speech }}</h6>
+      <h6>品詞 : {{ typWords[typWordCount].Description }}</h6>
+      <MissTyp :missTypCount="missTypCount" />
     </div>
     <div v-else>
       <h1>クリア!!</h1>
-      <button @click="replay">もう一度</button>
+      <MissTyp :missTypCount="missTypCount" />
+      <b-button-group vertical>
+        <b-button variant="info" @click="replay">もう一度？</b-button>
+        <b-button variant="info" to="./typmode">タイピング対象を選択(戻る)</b-button>
+      </b-button-group>
     </div>
-    <MissTyp :missTypCount="missTypCount" />
   </div>
 </template>
 
 <script>
+// @ts-nocheck
 import MonitorWord from './MonitorWord';
 import MissTyp from './MissTyp';
 
@@ -68,7 +74,9 @@ export default {
           //すべての単語を入力し切った場合の処理
           if (this.typWordCount == this.typWords.length) {
             this.isActive = !this.isActive;
-            this.postTypInfo();
+            if (this.userId) {
+              this.postTypInfo();
+            }
           }
 
           this.typWordSplit = this.typWords[this.typWordCount].word.split('');
@@ -171,6 +179,12 @@ export default {
     ...mapState(['alphabetArr']),
   },
   created: function () {
+
+    if (!this.type || !this.partsOfSpeech || !this.quantity || !this.alphabet) {
+      this.$router.push('typmode');
+      return;
+    }
+
     var params = new URLSearchParams();
     params.append('type', this.type);
     params.append('parts_of_speech', this.partsOfSpeech);

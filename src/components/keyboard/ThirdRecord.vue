@@ -18,6 +18,8 @@
 </template>
 
 <script>
+// @ts-nocheck
+
 import OneKey from './OneKey'
 
 export default {

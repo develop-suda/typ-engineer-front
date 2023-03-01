@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="keyBoard">
     <FirstRecord />
     <SecondRecord />
     <ThirdRecord />
@@ -21,4 +21,8 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped>
+.keyBoard {
+  margin-top: 20px;
+}
+</style>

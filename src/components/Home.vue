@@ -1,13 +1,5 @@
 <template>
   <div>
-    <div v-if="!isUserId">
-      <router-link to="./register">ユーザ登録</router-link>
-      <hr />
-    </div>
-    <div v-if="!isUserId">
-      <router-link to="./login">ログイン</router-link>
-      <hr />
-    </div>
     <div>
       <router-link to="./typmode">タイピングへ!</router-link>
       <hr />
@@ -16,18 +8,12 @@
       <router-link to="./wordList">単語一覧</router-link>
       <hr />
     </div>
-    <div v-if="isUserId">
-      <router-link to="./logout">ログアウト</router-link>
-      <hr />
-    </div>
-    <div v-if="isUserId">
-      <router-link to="./mypage">マイページ</router-link>
-      <hr />
-    </div>
   </div>
 </template>
 
 <script>
+// @ts-nocheck
+
 import { mapState } from 'vuex';
 
 export default {
@@ -35,8 +21,11 @@ export default {
   computed: {
     ...mapState(['userId']),
     isUserId() {
+      // @ts-ignore
       return this.userId != '';
     },
   },
 };
 </script>
+
+<style></style>

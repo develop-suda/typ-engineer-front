@@ -6,6 +6,8 @@
 </template>
 
 <script>
+// @ts-nocheck
+
 import { mapState } from 'vuex'
 
 export default {
@@ -26,14 +28,24 @@ export default {
 
 <style scoped>
 .keyFlame {
-  width: 50px;
-  height: 50px;
-  border: 1px solid;
+  width: 55px;
+  height: 55px;
+  border: 0.5px solid black;
+  border-collapse: collapse;
   background-color: white;
   display: inline-table;
 }
 
+p {
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 0%;
+  margin: 25% 0;
+}
+
 .pressing {
-  background-color: green;
+  background-color: #28a745;
+  color: #f8f9fa;
+
 }
 </style>

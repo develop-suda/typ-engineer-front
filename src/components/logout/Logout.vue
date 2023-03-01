@@ -1,10 +1,12 @@
 <template>
   <div>
-    <button @click="userLogout">ログアウト</button>
+    <b-button variant="info" @click="userLogout">Sign out</b-button>
   </div>
 </template>
 
 <script>
+// @ts-nocheck
+
 import { mapState } from 'vuex';
 
 export default {

@@ -1,34 +1,25 @@
 <template>
   <div>
     <div>
-      <p>姓</p>
-      <input type="text" name="last_name" v-model="lastName" required />
-      <p>名</p>
-      <input type="text" name="first_name" v-model="firstName" required />
-      <p>メールアドレス</p>
-      <input type="email" name="email" v-model="email" required />
-      <p>パスワード</p>
-      <input type="password" name="password" v-model="password" required />
-      <p>パスワードをもう一度</p>
-      <input
-        type="password"
-        name="password_confirmation"
-        v-model="passwordConfirmation"
-        required
-      />
+      <h3>Welcome to TYP-ENGINEER!</h3>
+      <h3>Let’s begin the typing</h3>
+      <b-form-input type="text" v-model="lastName" placeholder="性" required></b-form-input>
+      <b-form-input type="text" v-model="firstName" placeholder="名" required></b-form-input>
+      <b-form-input type="email" v-model="email" placeholder="メールアドレス" required></b-form-input>
+      <b-form-input type="password" v-model="password" placeholder="パスワード" required></b-form-input>
+      <b-form-input type="password" v-model="passwordConfirmation" placeholder="パスワードをもう一度" required></b-form-input>
       <p v-if="IsMatchPassword && !password"></p>
       <p v-else-if="IsMatchPassword && password">パスワードが一致します</p>
       <p v-else>パスワードが一致しておりません</p>
     </div>
     <hr />
-    <button @click="userRegister" :disabled="!IsMatchPassword">登録</button>
-    <hr />
-    {{ info }}
-    {{ hashPassword }}
+    <b-button variant="success" @click="userRegister" :disabled="!IsMatchPassword">Sign in</b-button>
   </div>
 </template>
 
 <script>
+// @ts-nocheck
+
 import { createHash } from 'crypto';
 
 export default {
